@@ -6,9 +6,46 @@ export default class Slider {
         this.slideIndex = 1;
     }
 
-    
+    showSlides(n) {
+        if (n > this.slides.length) {
+            this.slideIndex = 1;
+        }
+
+        if (n < 1) {
+            this.slideIndex = this.slides.length;
+        }
+
+        // this.slides.forEach(slide => {
+        //     slide.style.display = 'none';
+        // });
+
+
+        for (let i = 0; i < this.slides.length; i++) {
+            this.slides[i].style.display = 'none';
+        }
+
+        this.slides[this.slideIndex - 1].style.display = 'block';
+
+    }
+
+    plusSlides(n) {
+        this.showSlides(this.slideIndex += n);
+    }
 
     render() {
-        console.log(this.page, this.slides);
+        this.btns.forEach(item => {
+            item.addEventListener('click', () => {
+                this.plusSlides(1);
+            });
+
+
+            item.parentNode.previousElementSibling.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.slideIndex = 1;
+                this.showSlides(this.slideIndex = 1);
+            });
+        });
+
+        this.showSlides(this.slideIndex);
     }
 }
