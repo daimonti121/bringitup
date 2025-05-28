@@ -18,6 +18,7 @@ class Slider {
     this.slides = this.page.children;
     this.btns = document.querySelectorAll(btns);
     this.slideIndex = 1;
+    this.adBlock = document.querySelector('.hanson');
   }
   showSlides(n) {
     if (n > this.slides.length) {
@@ -26,15 +27,21 @@ class Slider {
     if (n < 1) {
       this.slideIndex = this.slides.length;
     }
-
-    // this.slides.forEach(slide => {
-    //     slide.style.display = 'none';
-    // });
-
     for (let i = 0; i < this.slides.length; i++) {
       this.slides[i].style.display = 'none';
+      this.slides[i].classList.remove('animated', 'fadeIn');
     }
     this.slides[this.slideIndex - 1].style.display = 'block';
+    this.slides[this.slideIndex - 1].classList.add('animated', 'fadeIn');
+    if (this.slideIndex === 3) {
+      setTimeout(() => this.showAdd(this.adBlock), 3000);
+    } else {
+      this.adBlock.style.display = 'none';
+      this.adBlock.classList.add('animated', 'fadeInUp');
+    }
+  }
+  showAdd(ad) {
+    ad.style.display = 'block';
   }
   plusSlides(n) {
     this.showSlides(this.slideIndex += n);
