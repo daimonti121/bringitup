@@ -35,7 +35,6 @@ export default class VideoPlayer {
         });
 
         console.log(this.player);
-        // M7lc1UVf-VE
         this.overlay.style.display = 'flex';
     }
 
