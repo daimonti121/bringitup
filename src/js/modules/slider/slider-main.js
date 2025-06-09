@@ -1,4 +1,4 @@
-import Slider from "./slider";
+import Slider from './slider';
 
 export default class MainSlider extends Slider {
     constructor(btns) {
@@ -22,7 +22,7 @@ export default class MainSlider extends Slider {
         this.slides[this.slideIndex - 1].style.display = 'block';
         this.slides[this.slideIndex - 1].classList.add('animated', 'fadeIn');
 
-        if(this.slideIndex === 3) {
+        if (this.slideIndex === 3) {
             setTimeout(() => this.showAdd(this.adBlock), 3000);
         } else {
             this.adBlock.style.display = 'none';
@@ -34,25 +34,28 @@ export default class MainSlider extends Slider {
         ad.style.display = 'block';
     }
 
-
     plusSlides(n) {
-        this.showSlides(this.slideIndex += n);
+        this.showSlides((this.slideIndex += n));
     }
 
     render() {
-        this.btns.forEach(item => {
-            item.addEventListener('click', () => {
-                this.plusSlides(1);
+        try {
+            this.btns.forEach((item) => {
+                item.addEventListener('click', () => {
+                    this.plusSlides(1);
+                });
+
+                item.parentNode.previousElementSibling.addEventListener(
+                    'click',
+                    (e) => {
+                        e.preventDefault();
+                        this.slideIndex = 1;
+                        this.showSlides((this.slideIndex = 1));
+                    }
+                );
             });
 
-
-            item.parentNode.previousElementSibling.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.slideIndex = 1;
-                this.showSlides(this.slideIndex = 1);
-            });
-        });
-
-        this.showSlides(this.slideIndex);
+            this.showSlides(this.slideIndex);
+        } catch (e) {}
     }
 }
