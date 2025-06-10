@@ -1,5 +1,6 @@
 export default class Slider {
     constructor({
+        container = null,
         btns = null,
         next = null,
         prev = null,
@@ -18,6 +19,5 @@ export default class Slider {
         this.animate = animate;
         this.autoplay = autoplay;
         this.slideIndex = 1;
-        // this.adBlock = document.querySelector('.hanson');
     }
 }
