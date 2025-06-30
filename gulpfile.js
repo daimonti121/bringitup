@@ -6,6 +6,7 @@ const browsersync = require("browser-sync");
 
 const dist = "./dist/";
 // const dist = "C:/OSPanel/home/loan"; // Ссылка на вашу папку на сервере
+// const dist = "C:/OSPanel/home/loan"; // Ссылка на вашу папку на сервере
 
 gulp.task("copy-html", () => {
     return gulp.src("./src/*.html")
